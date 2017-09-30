@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([2],{
 
 /***/ "./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js":
 /***/ (function(module, exports) {
@@ -2752,7 +2752,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./resources/assets/js/light-bootstrap-dashboard.js");
@@ -2760,4 +2760,4 @@ module.exports = __webpack_require__("./resources/assets/js/light-bootstrap-dash
 
 /***/ })
 
-},[2]);
+},[1]);

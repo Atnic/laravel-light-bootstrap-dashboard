@@ -1,2 +1,2 @@
 
-require('./app');
+require('./light-bootstrap-dashboard');
