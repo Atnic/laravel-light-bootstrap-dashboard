@@ -17,13 +17,13 @@
     "bootstrap-select": "^1.12.4",
     "bootstrap-switch": "^3.3.4",
     "chartist": "^0.11.0",
-    "cross-env": "^5.0.1",
+    "cross-env": "^5.1.0",
     "flatui-radiocheck": "^0.1.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
-    "laravel-mix": "^1.0",
+    "laravel-mix": "^1.5.1",
     "lodash": "^4.17.4",
     "pixeden-stroke-7-icon": "^1.2.3",
-    "vue": "^2.1.10"
+    "vue": "^2.5.2"
   }
 }
