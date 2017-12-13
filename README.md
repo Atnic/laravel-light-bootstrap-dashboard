@@ -1,11 +1,11 @@
 # Laravel Light Bootstrap Dashboard
-Laravel 5.4 Package for integrating Light Bootstrap Dashboard template and this package is Laravel Mix friendly. Currently this package can be integrated easily only on fresh installation.
+Laravel Package for integrating Light Bootstrap Dashboard template and this package is Laravel Mix friendly. Currently this package can be integrated easily only on fresh installation.
 
 # Installation
 ```bash
 composer require atnic/laravel-light-bootstrap-dashboard
 ```
-Add this line on ```config/app.php```, on  ```providers```
+If you are using Laravel 5.5 above skip this step. Add this line on ```config/app.php```, on  ```providers```
 ```php
 'providers' => [
   ...
@@ -22,6 +22,12 @@ Let's see what we've install. First, make sure that you already ran ```php artis
 php artisan serve
 ```
 Viola! You've running a Laravel site using Light Bootstrap Dashboard.
+
+![home](https://user-images.githubusercontent.com/14815819/33922278-4aeb4050-dffc-11e7-8228-9a1e0077c868.png)
+
+![login](https://user-images.githubusercontent.com/14815819/33922280-4b6d845c-dffc-11e7-9c43-f3130f8e5ed4.png)
+
+![register](https://user-images.githubusercontent.com/14815819/33922279-4b2a1c4e-dffc-11e7-9730-980aaa47ca9c.png)
 
 For more information on command
 ```bash

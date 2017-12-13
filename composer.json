@@ -1,6 +1,6 @@
 {
     "name": "atnic/laravel-light-bootstrap-dashboard",
-    "description": "The Laravel Framework.",
+    "description": "Laravel package for integrating Light Bootstrap Dashboard.",
     "keywords": ["laravel", "light-bootstrap-dashboard", "package", "composer"],
     "license": "MIT",
     "type": "package",
