@@ -81,7 +81,7 @@ npm install
 
 Install Light Bootstrap Dashboard needed package from npm
 ```bash
-npm install --save-dev animate.css bootstrap-notify bootstrap-select bootstrap-switch chartist flatui-radiocheck font-awesome pixeden-stroke-7-icon
+npm install --save-dev animate.css bootstrap bootstrap-notify bootstrap-select bootstrap-switch chartist flatui-radiocheck font-awesome popper.js pixeden-stroke-7-icon
 ```
 
 Run Laravel Mix command
