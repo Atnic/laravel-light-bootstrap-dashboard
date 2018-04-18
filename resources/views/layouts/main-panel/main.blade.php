@@ -64,13 +64,13 @@
                 {{ csrf_field() }}
               </form>
               <a class="nav-link" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <p>Logout</p>
+                <span>Logout</span>
               </a>
           </li>
           @elseif(!isset($exception))
-          <li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">
-              <p>Login</p>
+              <span>Login</span>
             </a>
           </li>
           @endif
