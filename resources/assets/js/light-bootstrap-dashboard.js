@@ -10,8 +10,11 @@ window.Chartist = require('chartist');
 try {
   window.$ = window.jQuery = require('jquery');
 
+  // Popper JS
+  require('popper.js');
+
   // Bootstrap Sass
-  require('bootstrap-sass');
+  require('bootstrap');
 
   // Bootstrap Notify
   require('bootstrap-notify');
@@ -69,7 +72,7 @@ if (token) {
 /*!
 
  =========================================================
- * Light Bootstrap Dashboard - v1.3.1.0
+ * Light Bootstrap Dashboard - v2.0.1
  =========================================================
 
  * Product Page: http://www.creative-tim.com/product/light-bootstrap-dashboard
@@ -81,7 +84,6 @@ if (token) {
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  */
-
 var searchVisible = 0;
 var transparent = true;
 
@@ -89,9 +91,15 @@ var transparentDemo = true;
 var fixedTop = false;
 
 var navbar_initialized = false;
+var mobile_menu_visible = 0,
+  mobile_menu_initialized = false,
+  toggle_initialized = false,
+  bootstrap_nav_initialized = false,
+  $sidebar,
+  isWindows;
 
 $(document).ready(function() {
-  var window_width = $(window).width();
+  window_width = $(window).width();
 
   // check if there is an image set for the sidebar's background
   lbd.checkSidebarImage();
@@ -104,13 +112,9 @@ $(document).ready(function() {
   //  Activate the tooltips
   $('[rel="tooltip"]').tooltip();
 
-  //      Activate the switches with icons
-  if ($('.switch').length != 0) {
-    $('.switch')['bootstrapSwitch']();
-  }
   //      Activate regular switches
   if ($("[data-toggle='switch']").length != 0) {
-    $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
+    $("[data-toggle='switch']").bootstrapSwitch();
   }
 
   $('.form-control').on("focus", function() {
@@ -132,102 +136,120 @@ $(window).resize(function() {
   }
 });
 
-window.lbd = {
+lbd = {
   misc: {
     navbar_menu_visible: 0
   },
-
   checkSidebarImage: function() {
-    var $sidebar = $('.sidebar');
-    var image_src = $sidebar.data('image');
+    $sidebar = $('.sidebar');
+    image_src = $sidebar.data('image');
 
-    if (image_src !== 'undefined') {
-      var sidebar_container = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>'
+    if (image_src !== undefined) {
+      sidebar_container = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>'
       $sidebar.append(sidebar_container);
+    } else if (mobile_menu_initialized == true) {
+      // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
+      $sidebar_wrapper.find('.navbar-form').remove();
+      $sidebar_wrapper.find('.nav-mobile-menu').remove();
+
+      mobile_menu_initialized = false;
     }
   },
+
   initRightMenu: function() {
-    if (!this.navbar_initialized) {
-      var $navbar = $('nav').find('.navbar-collapse').first().clone(true);
+    $sidebar_wrapper = $('.sidebar-wrapper');
 
-      var $sidebar = $('.sidebar');
-      var sidebar_color = $sidebar.data('color');
+    if (!mobile_menu_initialized) {
 
-      var $logo = $sidebar.find('.logo').first();
-      var logo_content = $logo[0].outerHTML;
+      $navbar = $('nav').find('.navbar-collapse').first().clone(true);
 
-      var ul_content = '';
+      nav_content = '';
+      mobile_menu_content = '';
 
-      $navbar.attr('data-color', sidebar_color);
-
-      //add the content from the regular header to the right menu
+      //add the content from the regular header to the mobile menu
       $navbar.children('ul').each(function() {
-        var content_buff = $(this).html();
-        ul_content = ul_content + content_buff;
+
+        content_buff = $(this).html();
+        nav_content = nav_content + content_buff;
       });
 
-      // add the content from the sidebar to the right menu
-      var content_buff = $sidebar.find('.nav').html();
-      ul_content = ul_content + content_buff;
+      nav_content = '<ul class="nav nav-mobile-menu">' + nav_content + '</ul>';
 
+      $navbar_form = $('nav').find('.navbar-form').clone(true);
 
-      ul_content = '<div class="sidebar-wrapper">' +
-        '<ul class="nav navbar-nav">' +
-        ul_content +
-        '</ul>' +
-        '</div>';
+      $sidebar_nav = $sidebar_wrapper.find(' > .nav');
 
-      var navbar_content = logo_content + ul_content;
+      // insert the navbar form before the sidebar list
+      $nav_content = $(nav_content);
+      $nav_content.insertBefore($sidebar_nav);
+      $navbar_form.insertBefore($nav_content);
 
-      $navbar.html(navbar_content);
+      $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
+        event.stopPropagation();
 
-      $('body').append($navbar);
+      });
 
-      var background_image = $sidebar.data('image');
-      if (background_image != 'undefined') {
-        $navbar.css('background', "url('" + background_image + "')")
-          .removeAttr('data-nav-image')
-          .addClass('has-image');
+      mobile_menu_initialized = true;
+    } else {
+      console.log('window with:' + $(window).width());
+      if ($(window).width() > 991) {
+        // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
+        $sidebar_wrapper.find('.navbar-form').remove();
+        $sidebar_wrapper.find('.nav-mobile-menu').remove();
+
+        mobile_menu_initialized = false;
       }
+    }
 
+    if (!toggle_initialized) {
+      $toggle = $('.navbar-toggler');
 
-      var $toggle = $('.navbar-toggle');
-
-      $navbar.find('a').removeClass('btn btn-round btn-default');
-      $navbar.find('button').removeClass('btn-round btn-fill btn-info btn-primary btn-success btn-danger btn-warning btn-neutral');
-      $navbar.find('button').addClass('btn-simple btn-block');
-
-      var lbd = this;
       $toggle.click(function() {
-        if (lbd.misc.navbar_menu_visible == 1) {
+
+        if (mobile_menu_visible == 1) {
           $('html').removeClass('nav-open');
-          lbd.misc.navbar_menu_visible = 0;
-          $('#bodyClick').remove();
+
+          $('.close-layer').remove();
           setTimeout(function() {
             $toggle.removeClass('toggled');
           }, 400);
 
+          mobile_menu_visible = 0;
         } else {
           setTimeout(function() {
             $toggle.addClass('toggled');
           }, 430);
 
-          var div = '<div id="bodyClick"></div>';
-          $(div).appendTo("body").click(function() {
+
+          main_panel_height = $('.main-panel')[0].scrollHeight;
+          $layer = $('<div class="close-layer"></div>');
+          $layer.css('height', main_panel_height + 'px');
+          $layer.appendTo(".main-panel");
+
+          setTimeout(function() {
+            $layer.addClass('visible');
+          }, 100);
+
+          $layer.click(function() {
             $('html').removeClass('nav-open');
-            lbd.misc.navbar_menu_visible = 0;
-            $('#bodyClick').remove();
+            mobile_menu_visible = 0;
+
+            $layer.removeClass('visible');
+
             setTimeout(function() {
+              $layer.remove();
               $toggle.removeClass('toggled');
+
             }, 400);
           });
 
           $('html').addClass('nav-open');
-          lbd.misc.navbar_menu_visible = 1;
+          mobile_menu_visible = 1;
 
         }
       });
-      this.navbar_initialized = true;
+
+      toggle_initialized = true;
     }
   }
 }
@@ -250,14 +272,3 @@ function debounce(func, wait, immediate) {
     if (immediate && !timeout) func.apply(context, args);
   };
 };
-
-$(function () {
-  $('[data-toggle="checkbox"]').radiocheck({
-    checkboxTemplate: '<span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>'
-  });
-  $('[data-toggle="checkbox"]').on('change', function (e) {
-    e && e.preventDefault() && e.stopPropagation();
-    $(this).prop('checked') ? $(this).data('radiocheck').check() : $(this).data('radiocheck').uncheck() ;
-    $(this).parent('.checkbox').toggleClass('checked');
-  });
-});
