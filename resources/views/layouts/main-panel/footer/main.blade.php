@@ -1,8 +1,8 @@
 <footer class="footer">
-  <div class="container-fluid">
-    <nav class="pull-left">
+  <div class="container">
+    <nav>
       @section('footer-menu')
-      <ul>
+      <ul class="footer-menu">
         <li>
           <a href="#">
             Home
@@ -25,9 +25,9 @@
         </li>
       </ul>
       @show
+      <p class="copyright text-center">
+        &copy; {{ date('Y') }}
+      </p>
     </nav>
-    <p class="copyright pull-right">
-      &copy; {{ date('Y') }}
-    </p>
   </div>
 </footer>
