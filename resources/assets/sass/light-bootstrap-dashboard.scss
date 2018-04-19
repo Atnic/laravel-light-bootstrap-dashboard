@@ -1,9 +1,9 @@
 
 // Fonts
-@import url("http://fonts.googleapis.com/css?family=Roboto:400,700,300");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,200");
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap.scss";
 
 // Bootstrap Select
 @import "node_modules/bootstrap-select/sass/bootstrap-select";
@@ -26,7 +26,7 @@
 /*!
 
  =========================================================
- * Light Bootstrap Dashboard - v1.3.1.0
+ * Light Bootstrap Dashboard - v2.0.1 (Bootstrap 4)
  =========================================================
 
  * Product Page: http://www.creative-tim.com/product/light-bootstrap-dashboard
@@ -58,20 +58,12 @@
 @import "lbd/footers";
 
 // Fancy Stuff
+@import "lbd/plugins/animate";
 @import "lbd/dropdown";
 @import "lbd/cards";
 @import "lbd/chartist";
 @import "lbd/responsive";
+@import "lbd/bootstrap-switch";
 
-.alert[data-notify="container"] {
-  [data-notify="dismiss"] {
-    top: 50% !important;
-    margin-top: -13px !important;
-  }
-}
-
-div[data-notify="container"]:not(.alert-with-icon) {
-    span[data-notify="icon"] ~ span[data-notify="message"] {
-        margin-left: 45px;
-    }
-}
+// Nucleo Icons
+@import "lbd/partial-nucleo-icons";

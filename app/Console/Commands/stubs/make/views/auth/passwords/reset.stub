@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-4 col-md-offset-4">
+  <div class="col-md-4 offset-md-4">
     <div class="auth-card card">
-      <div class="header">
-        <h4 class="title">Reset Password</h4>
+      <div class="card-header">
+        <h4 class="card-title">Reset Password</h4>
       </div>
-      <div class="content">
+      <div class="card-body">
         <form action="{{ route('password.request') }}" method="POST">
           {{ csrf_field() }}
           <input type="hidden" name="token" value="{{ $token }}">

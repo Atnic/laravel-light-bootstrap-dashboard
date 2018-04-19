@@ -4,13 +4,13 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 offset-md-2">
     <div class="card">
-      <div class="header">
-        <h4 class="title">Dashboard</h4>
-        {{-- <p class="category">Dashboard</p> --}}
+      <div class="card-header">
+        <h4 class="card-title">Dashboard</h4>
+        {{-- <p class="card-category">Dashboard</p> --}}
       </div>
-      <div class="content">
+      <div class="card-body">
         @if (session('status'))
         <div class="alert alert-success">
           {{ session('status') }}

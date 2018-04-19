@@ -42,9 +42,12 @@ In this file you can extends global section like menu.
 To extends menu add this in ```app.blade.php```
 ```blade
 @section('sidebar-menu')
-<ul class="nav" id="side-menu">
-  <li>
-    <a href="{{ route('home') }}" class="active"><i class="fa fa-home fa-fw"></i> Home</a>
+<ul class="nav">
+  <li class="active">
+    <a class="nav-link" href="{{ route('home') }}">
+      <i class="pe-7s-home"></i>
+      <p>Home</p>
+    </a>
   </li>
 </ul>
 @endsection
@@ -81,7 +84,7 @@ npm install
 
 Install Light Bootstrap Dashboard needed package from npm
 ```bash
-npm install --save-dev animate.css bootstrap-notify bootstrap-select bootstrap-switch chartist flatui-radiocheck font-awesome pixeden-stroke-7-icon
+npm install --save-dev animate.css bootstrap bootstrap-notify bootstrap-select bootstrap-switch chartist flatui-radiocheck font-awesome popper.js pixeden-stroke-7-icon
 ```
 
 Run Laravel Mix command
