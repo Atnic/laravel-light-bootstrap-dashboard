@@ -1,14 +1,12 @@
 <div class="main-panel">
   <nav class="navbar navbar-expand-lg " color-on-scroll="500">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">@yield('content-title', 'Title')</a>
-        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar burger-lines"></span>
-          <span class="navbar-toggler-bar burger-lines"></span>
-          <span class="navbar-toggler-bar burger-lines"></span>
-        </button>
-      </div>
+      <a class="navbar-brand" href="#">@yield('content-title', 'Title')</a>
+      <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar burger-lines"></span>
+        <span class="navbar-toggler-bar burger-lines"></span>
+        <span class="navbar-toggler-bar burger-lines"></span>
+      </button>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="nav navbar-nav mr-auto">
           <li class="nav-item">
@@ -64,13 +62,13 @@
                 {{ csrf_field() }}
               </form>
               <a class="nav-link" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <span>Logout</span>
+                <span class="no-icon">Logout</span>
               </a>
           </li>
           @elseif(!isset($exception))
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">
-              <span>Login</span>
+              <span class="no-icon">Login</span>
             </a>
           </li>
           @endif

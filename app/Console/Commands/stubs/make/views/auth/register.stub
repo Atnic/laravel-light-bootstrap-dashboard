@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-4 col-md-offset-4">
+  <div class="col-md-4 offset-md-4">
     <div class="auth-card card">
-      <div class="header">
-        <h4 class="title">Register</h4>
+      <div class="card-header">
+        <h4 class="card-title">Register</h4>
       </div>
-      <div class="content">
+      <div class="card-body">
         <form action="{{ route('register') }}" method="POST">
           {{ csrf_field() }}
           <fieldset>

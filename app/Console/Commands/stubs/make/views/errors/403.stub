@@ -6,13 +6,13 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 offset-md-2">
     <div class="card">
-      <div class="header">
-        <h4 class="title">Oops! {{ class_basename($exception->getPrevious() ? : $exception) }}</h4>
+      <div class="card-header">
+        <h4 class="card-title">Oops! {{ class_basename($exception->getPrevious() ? : $exception) }}</h4>
       </div>
       @if($exception->getMessage())
-      <div class="content">
+      <div class="card-body">
         {{ $exception->getPrevious() ? $exception->getPrevious()->getMessage() : $exception->getMessage() }}
       </div>
       @endif
