@@ -23,4 +23,3 @@ mix.extract([
   'axios'
 ], 'public/js/vendor.js');
 mix.version();
-mix.setPublicPath('public');
